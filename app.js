@@ -25,8 +25,8 @@ const isLoggedIn = authRouter.isLoggedIn
 const loggingRouter = require('./routes/logging');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const toDoRouter = require('./routes/todo');
-const toDoAjaxRouter = require('./routes/todoAjax');
+const budgetRouter = require('./routes/budget');
+const budgetAjaxRouter = require('./routes/budgetAjax');
 
 
 
@@ -50,8 +50,8 @@ app.use(loggingRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/todo',toDoRouter);
-app.use('/todoAjax',toDoAjaxRouter);
+app.use('/budget',budgetRouter);
+app.use('/budgetAjax',budgetAjaxRouter);
 
 const myLogger = (req,res,next) => {
   console.log('inside a route!')

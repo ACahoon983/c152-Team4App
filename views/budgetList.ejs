@@ -1,0 +1,54 @@
+
+
+  <div class="jumbotron">
+    <h1> ToDo List for <%= user.googlename %> </h1>
+    <p> Welcome to our budgeting app </p>
+
+    <form method="post" action="budget">
+      budget: <input type ="number" name ="budget"><br>
+      <input type ="submit" value ="store">
+    </form>
+
+    <p>Please input what things you would like to budget for</p>
+
+    <form method ="post" action="budget">
+      item: <input type = "text" name ="item"><br>
+      amount: <input type ="number" name"money"<br>
+      <input type = "submit" value="store">
+    </form>
+
+    <%  let numItems = 0
+        items.forEach(item =>){
+          if(!item.remove){
+            numItems += 1
+          }
+      %>
+
+      <a href="/budget/remove/<%=item._id %>">
+          X
+      </a>
+      ::
+      <%= item.item %>
+      <% if (item.completed) {%>
+          <a href="/budget/switchComplete/<%= item._id %>">
+              done
+          </a>
+      <% } else {%>
+          <a href="/budget/switchComplete/<%= item._id %>">
+              todo
+          </a>
+      <%}%>
+     <br>
+ <% }) %>
+
+    <%let leftover = budget
+      items.(item =>){
+        leftover = leftover - item.money
+      }
+    if (leftover > 0) {%>
+        <p>You have $<%= leftover %> left to allocate</p>
+    <%} else if (leftover <0){%>
+        <p>You are over your budget by <%= leftover %></p>
+    <%} else {%>
+        <p>Congrats, you have budgeted all of your money!</p>
+  </div>

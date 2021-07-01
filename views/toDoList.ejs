@@ -2,14 +2,19 @@
 
   <div class="jumbotron">
     <h1> ToDo List for <%= user.googlename %> </h1>
+    <p> Welcome to our budgeting app </p>
     <p> Here is your list of things to do! </p>
 
+    <form method="post" action="todo">
+      budget: <input type ="number" name ="budget"><br>
+      <input type ="submit" value ="store">
+    </form>
 
 
       <% let numTodo=0
          items.forEach(item => {
          if (!item.completed) {
-             numTodo += 1 
+             numTodo += 1
          }
         %>
            <a href="/todo/remove/<%=item._id %>">
@@ -31,7 +36,7 @@
 
 
 
-      <form method="post" action="todo">
+      <form method="post" action="budget">
           new item: <input type="text" name="item"><br>
           <input type="submit" value="store">
       </form>

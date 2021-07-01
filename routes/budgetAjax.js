@@ -4,7 +4,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/ToDoItem')
+const ToDoItem = require('../models/BudgetItem')
 
 
 /*
@@ -25,7 +25,7 @@ isLoggedIn = (req,res,next) => {
 router.get('/',
   async (req, res, next) => {
       res.locals.items = await ToDoItem.find({userId:req.user._id})
-      res.render('toDoListClient')
+      res.render('budgetListClient')
 });
 
 // get the value associated to the key
@@ -41,6 +41,7 @@ router.post('/',
       console.log(`req.body=${JSON.stringify(req.body)}`)
       const todo = new ToDoItem(
         {item:req.body.item,
+         budget:req.body.money,
          createdAt: new Date(),
          complete: false,
          userId: req.user._id
@@ -55,7 +56,7 @@ router.post('/remove',
   async (req, res, next) => {
     try {
       let itemId = req.body.itemId
-      console.log("inside /todo/remove/:itemId")
+      console.log("inside /budget/remove/:itemId")
       let result = await ToDoItem.remove({_id:itemId});
       res.json(result)
     }catch(e){

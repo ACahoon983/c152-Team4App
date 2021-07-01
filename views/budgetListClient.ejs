@@ -2,8 +2,8 @@
 
   <div class="jumbotron">
     <h1> ToDo List for <%= user.googlename %> </h1>
-    <p> Here is your list of things to do! </p>
-     <div id="list">
+    <p> Welcome to our budgeting app </p>
+    <div id="list">
       <% items.forEach(item => { %>
           <div id="<%= item._id %>">
            <a onclick="remove('<%=item._id %>')">X</a>
@@ -16,6 +16,7 @@
 
     <!-- Here is where we get the new todo item -->
     new item: <input type="text" id="item" name="item"><br>
+    <input type="number" name="budget"> <br>
     <input type="submit" value="store" onclick="storeData()">
 
 
@@ -42,14 +43,14 @@
        async () => {
          try{
               let newtodo = document.getElementById('item').value
-              let data = await postData('/todoAjax', { item: newtodo})
+              let data = await postData('/budgetAjax', { item: newtodo})
               let theList = document.getElementById('list')
               document.getElementById('item').value=""
               theList.innerHTML = theList.innerHTML+
                `<div id="${data._id}">
                 <a onclick="remove('${data._id}')">X</a>
                 ::
-                ${newtodo}
+                ${newbudget}
                </div>`
           } catch (e){
           alert("error! "+e)
@@ -60,7 +61,7 @@
         async (x) => {
           try{
             let oldtodo = document.getElementById(x)
-            let data = await postData(`/todoAjax/remove`,{itemId:x})
+            let data = await postData(`/budgetAjax/remove`,{itemId:x})
             console.log(JSON.stringify(data,null,2))
             oldtodo.parentNode.removeChild(oldtodo);
           } catch(e) {
