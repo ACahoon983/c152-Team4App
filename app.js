@@ -68,6 +68,10 @@ app.get('/testing2',(req,res) => {
   res.render('testing2')
 })
 
+app.get('/team4',(req,res) => {
+  res.render('team4')
+})
+
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
